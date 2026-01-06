@@ -37,10 +37,12 @@ int main(){
 	free(victim);
 	
 	printf("Next we need to free between 1 and 6 more pointers. These will also go\n"
-		   "in the fastbin. If the stack address that we want to overwrite is not zero\n"
+		   "in the fastbin. If we don't control the data on the stack,\n"
 		   "then we need to free exactly 6 more pointers, otherwise the attack will\n"
-		   "cause a segmentation fault. But if the value on the stack is zero then\n"
-		   "a single free is sufficient.\n\n");
+		   "cause a segmentation fault when traversing the linked list.\n"
+		   "But if we control at least 8-byte on the stack, we know where the stack is,\n"
+		   "and we want to control more data on the stack, a single free is sufficient\n"
+		   "by forging a mangled NULL on the stack to terminate list traversal.\n\n");
 	
 	// Fill the fastbin.
 	for (i = 8; i < 14; i++) free(ptrs[i]);
