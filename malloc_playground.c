@@ -76,9 +76,9 @@ int main(int argc, char ** argv) {
 				}
 				else if (num == 2){
 					int tmpArg = atoi((const char *) &arg1);
+					free((void *) ptrArray[tmpArg]);
 					ptrArray[tmpArg] = 0;
 					sizeTable[tmpArg] = 0;
-					free((void *) ptrArray[tmpArg]);
 					ptrNumber -= 1;
 					fprintf(stderr, "==> ok\n");
 				}
